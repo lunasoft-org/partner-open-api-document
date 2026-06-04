@@ -1,6 +1,37 @@
+# 알림톡 템플릿 관리 API
+
+## 공통 정보
+
+### Domain
+- bizmsg-center-api.blumn.ai
+
+### 인증 헤더
+- x-api-key: {api-key}
+
+## 1. 템플릿 생성
+- METHOD: POST
+- URL: /v2/template/create
+
+### 요청 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| Request Body | [Template[]](#template) | 템플릿 목록 | O |
+
+### 응답 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| Request Body | [Template[]](#template) | 템플릿 목록 | O |
+
+### templateCreateResult
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| code | string | 성공: success<br>실패: fail | O |
+| message | string | 실패 사유 | X |
+| data | [Template](#template) | 실패 사유 | X |
+
 ## 기타
 
-#### Template
+#### template
 
 | 이름 | 타입 | 설명 | 필수 |
 | --- | --- | --- | --- |
