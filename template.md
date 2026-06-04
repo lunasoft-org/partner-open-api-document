@@ -20,7 +20,7 @@
 ### 응답 본문
 | 이름 | 타입 | 설명 | 필수 |
 | --- | --- | --- | --- |
-| Request Body | [Template[]](#template) | 템플릿 목록 | O |
+| Request Body | [Template[]](#templateCreateResult) | 템플릿 목록 | O |
 
 ### templateCreateResult
 | 이름 | 타입 | 설명 | 필수 |
@@ -28,6 +28,62 @@
 | code | string | 성공: success<br>실패: fail | O |
 | message | string | 실패 사유 | X |
 | data | [Template](#template) | 실패 사유 | X |
+
+### 요청 예시
+```
+curl -X POST \
+  -H 'x-api-key: {api-key}' \
+  -H 'Content-type: application/json' \
+  -d '[
+  {
+    "senderKey": "{senderKey}",
+    "senderKeyType": "S",
+    "templateCode": "template_001",
+    "templateName": "템플릿 명",
+    "templateMessageType": "BA",
+    "templateEmphasizeType": "NONE",
+    "templateContent": "템플릿 내용",
+    "categoryCode": "001001",
+    "buttons": [
+      {
+        "ordering": 1,
+        "linkType": "WL",
+        "name": "웹링크버튼",
+        "linkMo": "http: //www.sweettracker.co.kr"
+      },
+      {
+        "ordering": 2,
+        "linkType": "AL",
+        "name": "앱링크버튼",
+        "linkIos": "daumapps: //open",
+        "linkAnd": "daumapps: //open"
+      },
+      {
+        "ordering": 3,
+        "linkType": "DS",
+        "name": "배송 조회하기"
+      }
+    ],
+    "quickReplies": [
+      {
+        "name": "봇키워드",
+        "linkType": "BK",
+        "linkTypeName": "봇키워드"
+      },
+      {
+        "name": "바로가기",
+        "linkType": "WL",
+        "linkTypeName": "웹링크",
+        "linkMo": "http: //daum.net",
+        "linkPc": null,
+        "linkIos": null,
+        "linkAnd": null
+      }
+    ]
+  }
+]' \
+  https://bizmsg-center-api.blumn.ai/v2/template/create
+```
 
 ## 기타
 
