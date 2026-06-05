@@ -85,6 +85,16 @@ curl -X POST \
   https://bizmsg-center-api.blumn.ai/v2/template/create
 ```
 
+### 응답 예시
+```
+[
+  {
+    "code":"fail",
+    "data":"template_001",
+    "message":"senderKey is required"
+  }
+]
+```
 ## 기타
 
 #### template
