@@ -104,9 +104,8 @@ curl -X POST \
 | 이름 | 타입 | 설명 | 필수 |
 | --- | --- | --- | --- |
 | senderKey | text(40) | 발신프로필 키 | O |
-| senderKeyType | text(1) | 발신프로필 키 타입<br>G: 그룹<br>S: 발신프로필 (기본값) | X |
 | templateCode | text(30) | 템플릿 코드 | O |
-| newSenderKey | text(40) | 발신프로필 키 (senderKeyType이 G인 경우 발신프로필 그룹키) | O |
+| newSenderKey | text(40) | 발신프로필 키 | O |
 | newSenderKeyType | text(1) | 발신프로필 키 타입<br>G: 그룹<br>S: 발신프로필 (기본값) | X |
 | newTemplateCode | text(30) | 템플릿 코드 | O |
 | newTemplateName | text(200) | 템플릿 이름 | O |
@@ -133,7 +132,7 @@ curl -X POST \
 | --- | --- | --- | --- |
 | code | string | 성공: success<br>실패: fail | O |
 | message | string | 실패 사유 | X |
-| data | [Template](#template) | 실패 사유 | X |
+| data | string | 템플릿 코드 | X |
 
 ### Example CURL
 ```
@@ -182,6 +181,123 @@ curl -X POST \
   "message":null
 }
 ```
+
+### 3. 템플릿 조회
+- METHOD: GET
+- URL: /v2/template
+
+### 응답 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| code | string | 성공: success<br>실패: fail | O |
+| message | string | 실패 사유 | X |
+| data | [Template](#template) | 템플릿 코드 | X |
+
+### 요청 예시
+```
+curl -X GET \
+  -H 'userId: {user_id}' \
+  'https://bizmsg-center-api.blumn.ai/v2/template?senderKey={senderKey}&templateCode=template_001'
+```
+
+## 4. 템플릿 검수 요청
+- METHOD: POST
+- URL: /v2/template/request
+
+### 요청 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| senderKey | string | 프로필 키 | O |
+| templateCode | string | 템플릿 코드 | O |
+
+### 요청 예시
+```
+curl -X POST \
+  -H 'x-api-key: {api-key}' \
+  -H 'Content-type: application/json' \
+  -d '[
+    {
+      "senderKey":"2a1ea83fb57b2c21096f994d1ab3091b0dac3c63",
+      "templateCode":"template_001",
+      "senderKeyType":"S"
+    }
+  ]' \
+  https://bizmsg-center-api.blumn.ai/v2/template/request
+```
+
+## 5. 템플릿 검수 요청 취소
+- METHOD: POST
+- URL: /v2/template/cancel_request
+
+### 요청 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| senderKey | string | 프로필 키 | O |
+| templateCode | string | 템플릿 코드 | O |
+
+### 요청 예시
+```
+curl -X POST \
+  -H 'x-api-key: {api-key}' \
+  -H 'Content-type: application/json' \
+  -d '[
+    {
+      "senderKey":"2a1ea83fb57b2c21096f994d1ab3091b0dac3c63",
+      "templateCode":"template_001",
+      "senderKeyType":"S"
+    }
+  ]' \
+  https://bizmsg-center-api.blumn.ai/v2/template/cancel_request
+```
+
+## 5. 템플릿 승인 취소
+- METHOD: POST
+- URL: /v2/template/cancel_approval
+
+### 요청 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| senderKey | string | 프로필 키 | O |
+| templateCode | string | 템플릿 코드 | O |
+
+### 요청 예시
+```
+curl -X POST \
+  -H 'x-api-key: {api-key}' \
+  -H 'Content-type: application/json' \
+  -d '[
+    {
+      "senderKey":"2a1ea83fb57b2c21096f994d1ab3091b0dac3c63",
+      "templateCode":"template_001",
+      "senderKeyType":"S"
+    }
+  ]' \
+  https://bizmsg-center-api.blumn.ai/v2/template/cancel_approval
+```
+
+## 6. 최근 수정된 템플릿 조회
+- METHOD: GET
+- URL: /v2/template/last_modified
+
+### 요청 예시
+```
+curl -X GET \
+  -H 'x-api-key: {api-key}' \
+  'https://bizmsg-center-api.blumn.ai/v2/template/last_modified?since=20260101120000&page=1'
+```
+
+### 응답 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| code | string | 성공: success<br>실패: fail | O |
+| message | string | 실패 사유 | X |
+| data | [Modify[]](#templateModify) | 템플릿 코드 | X |
+
+### templateModify
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| templateCode | string | 템플릿 코드 | O |
+| modifiedAt | string | 수정 일시 | O |
 
 ## 기타
 
