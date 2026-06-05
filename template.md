@@ -27,7 +27,7 @@
 | --- | --- | --- | --- |
 | code | string | 성공: success<br>실패: fail | O |
 | message | string | 실패 사유 | X |
-| data | [Template](#template) | 실패 사유 | X |
+| data | string | 템플릿 코드 | X |
 
 ### 요청 예시
 ```
@@ -95,6 +95,96 @@ curl -X POST \
   }
 ]
 ```
+
+## 2. 템플릿 수정
+- METHOD: POST
+- URL: /v2/template/update
+
+### 요청 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| 이름 | 타입 | 설명 | 필수 |
+| ------------------ | -------   | --- | --- |
+| senderKey | text(40) | 발신프로필 키 | O |
+| senderKeyType | text(1) | 발신프로필 키 타입<br>G: 그룹<br>S: 발신프로필 (기본값) | X |
+| templateCode | text(30) | 템플릿 코드 | O |
+| newSenderKey | text(40) | 발신프로필 키 (senderKeyType이 G인 경우 발신프로필 그룹키) | O |
+| newSenderKeyType | text(1) | 발신프로필 키 타입<br>G: 그룹<br>S: 발신프로필 (기본값) | X |
+| newTemplateCode | text(30) | 템플릿 코드 | O |
+| newTemplateName | text(200) | 템플릿 이름 | O |
+| newTemplateMessageType | text | [템플릿 메시지 타입](#templateMessageType) | O |
+| newTemplateEmphasizeType | text | [템플릿 메시지 강조 타입](#templateEmphasizeType) | O |
+| newTemplateContent | text | 템플릿 내용 | O |
+| newTemplatePreviewMessage | text | 템플릿 미리보기 메시지(템플릿 검수 가이드 참고) | X |
+| newTemplateExtra | text | 부가 정보(템플릿 검수 가이드 참고) | X |
+| newTemplateImageUrl | text | 템플릿 이미지 링크 (템플릿 검수 가이드 참고) | X |
+| newTemplateTitle | text | 템플릿 내용 중 강조 표기할 핵심 정보 (템플릿 검수 가이드 참고) | X |
+| newTemplateSubtitle | text | 강조 표기 보조 문구 (템플릿 검수 가이드 참고) | X |
+| newTemplateHeader | text(16) | 헤더 (템플릿 검수 가이드 참고) | X |
+| newTemplateItemHighlight | [TemplateItemHighlight](#templateItemHighlight) | 아이템 하이라이트 (템플릿 검수 가이드 참고) | X |
+| newTemplateItem     | [TemplateItem](#templateItem) | 아이템 리스트 (템플릿 검수 가이드 참고) | X |X |
+| newTemplateRepresentLink | [TemplateRepresentLink](#templateRepresentLink) | 대표링크 | X |
+| newCategoryCode     | text | 템플릿 카테고리코드 | O |
+| securityFlag     | boolean | 보안 템플릿 여부<br>true: 설정<br>false: 미설정 | X |
+| adultFlag        | boolean | 연령 인증 설정 여부<br>true: 설정<br>false: 미설정 | X |
+| buttons          | [Button[]](#buttons) | 버튼 정보 | X |
+| quickReplies     | [QuickReply[]](#quickReplies) | 바로연결 정보 | X |
+
+### 응답 본문
+| 이름 | 타입 | 설명 | 필수 |
+| --- | --- | --- | --- |
+| code | string | 성공: success<br>실패: fail | O |
+| message | string | 실패 사유 | X |
+| data | [Template](#template) | 실패 사유 | X |
+
+### Example CURL
+```
+curl -X POST \
+  -H 'x-api-key: {api-key}' \
+  -H 'Content-type: application/json' \
+  -d '{
+  "senderKey": "2a1ea83fb57b2c21096f994d1ab3091b0dac3c63",
+  "senderKeyType": "S",
+  "templateCode": "template_002",
+  "newSenderKey": "2a1ea83fb57b2c21096f994d1ab3091b0dac3c63",
+  "newTemplateCode": "template_003",
+  "newTemplateName": "테스트템플릿",
+  "newTemplateMessageType": "BA",
+  "newTemplateEmphasizeType": "NONE",
+  "newTemplateContent": "템플릿 내용",
+  "newButtons": [
+    {
+      "ordering": 1,
+      "linkType": "WL",
+      "name": "웹링크버튼",
+      "linkMo": "http://www.sweettracker.co.kr"
+    },
+    {
+      "ordering": 2,
+      "linkType": "AL",
+      "name": "앱링크버튼",
+      "linkIos": "daumapps://open",
+      "linkAnd": "daumapps://open"
+    },
+    {
+      "ordering": 3,
+      "linkType": "DS",
+      "name": "배송 조회하기"
+    }
+  ]
+}' \
+  https://bizmsg-center-api.blumn.ai/v2/template/update
+```
+
+### 응답 예시
+```
+{
+  "code":"success",
+  "data":"template_001",
+  "message":null
+}
+```
+
 ## 기타
 
 #### template
