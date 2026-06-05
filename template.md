@@ -125,8 +125,8 @@ curl -X POST \
 | newCategoryCode     | text | 템플릿 카테고리코드 | O |
 | securityFlag     | boolean | 보안 템플릿 여부<br>true: 설정<br>false: 미설정 | X |
 | adultFlag        | boolean | 연령 인증 설정 여부<br>true: 설정<br>false: 미설정 | X |
-| buttons          | [Button[]](#buttons) | 버튼 정보 | X |
-| quickReplies     | [QuickReply[]](#quickReplies) | 바로연결 정보 | X |
+| newButtons          | [Button[]](#buttons) | 버튼 정보 | X |
+| newQuickReplies     | [QuickReply[]](#quickReplies) | 바로연결 정보 | X |
 
 ### 응답 본문
 | 이름 | 타입 | 설명 | 필수 |
