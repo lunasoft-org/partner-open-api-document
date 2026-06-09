@@ -33,7 +33,7 @@
 ```
 curl -X GET \
   -H 'x-api-key: {api-key}' \
-  'https://bizmsg-center-api.blumn.ai/v1/senders
+  'https://bizmsg-center-api.blumn.ai/v1/senders'
 ```
 
 ### 응답 예시
