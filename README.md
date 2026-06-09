@@ -1,6 +1,6 @@
-# bizmsg-partner-open-api-document
+# bizmsg-center-api.blumn.ai
 
-`bizmsg-open-api.blumn.ai` 파트너용 Open API 문서 저장소입니다.  
+`bizmsg-center-api.blumn.ai` 파트너용 Open API 문서 저장소입니다.  
 
 ---
 
