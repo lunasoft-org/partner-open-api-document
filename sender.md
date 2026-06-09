@@ -32,7 +32,7 @@
 ### 요청 예시
 ```
 curl -X GET \
-  -H 'userId: {user_id}' \
+  -H 'x-api-key: {api-key}' \
   'https://bizmsg-center-api.blumn.ai/v1/senders
 ```
 
