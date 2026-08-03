@@ -283,7 +283,7 @@ curl -X POST \
 ```
 curl -X GET \
   -H 'x-api-key: {api-key}' \
-  'https://bizmsg-center-api.blumn.ai/v2/template/last_modified?since=20260101120000&page=1'
+  'https://bizmsg-center-api.blumn.ai/v2/template/last_modified?since=20260101120000'
 ```
 
 ### 응답 본문
