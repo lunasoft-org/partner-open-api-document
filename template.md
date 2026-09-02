@@ -44,6 +44,7 @@ curl -X POST \
     "templateEmphasizeType": "NONE",
     "templateContent": "템플릿 내용",
     "categoryCode": "001001",
+    "adultFlag": true, // 연령인증 설정 여부
     "buttons": [
       {
         "ordering": 1,
